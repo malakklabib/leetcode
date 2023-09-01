@@ -6,8 +6,6 @@ class Solution {
                 s1++;
             t1++;
         }
-        if(s1!=s.length())
-            return false;
-        return true;
+        return s1==s.length();
     }
 }

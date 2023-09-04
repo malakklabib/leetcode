@@ -19,6 +19,6 @@ class Solution {
             ans = Math.max(ans, total);
         }
 
-        return ans == Integer.MIN_VALUE? 0 : ans;
+        return ans;
     }
 }

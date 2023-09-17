@@ -9,8 +9,6 @@ class Solution {
         ListNode prev = dummy;
 
         for (int i = 1; i < left; i++) {
-            if (prev.next == null)
-                return head;
             prev = prev.next;
         }
 
@@ -18,8 +16,6 @@ class Solution {
         ListNode next = current.next;
 
         for (int i = left; i < right; i++) {
-            if (next == null) 
-                return head;
             current.next = next.next;
             next.next = prev.next;
             prev.next = next;

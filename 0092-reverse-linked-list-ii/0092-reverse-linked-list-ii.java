@@ -3,25 +3,24 @@ class Solution {
         if (head == null || left == right) {
             return head;
         }
-
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode prev = dummy;
-
-        for (int i = 1; i < left; i++) {
-            prev = prev.next;
+        ListNode f = new ListNode(-1), l = head, p, c, n;
+        f.next = head;
+        for(int i = 1; i<left; i++)
+            f = f.next;
+        for(int i = 1; i<right; i++)
+            l = l.next;
+        p = f.next;
+        c = p.next;
+        n = c.next;
+        f.next = l;
+        p.next = l.next;
+        c.next = p;
+        while(c!=l){
+            p = c;
+            c = n;
+            n = n.next;
+            c.next = p;
         }
-
-        ListNode current = prev.next;
-        ListNode next = current.next;
-
-        for (int i = left; i < right; i++) {
-            current.next = next.next;
-            next.next = prev.next;
-            prev.next = next;
-            next = current.next;
-        }
-
-        return dummy.next;
+        return left==1? l : head;
     }
 }

@@ -12,24 +12,16 @@ class Solution {
     public ListNode removeElements(ListNode head, int val) {
         if(head==null)
             return head;
-        ListNode p = new ListNode(-1), c = head;
-        p.next = c;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode p = dummy, c = head;
         while(c!=null){
-            if(c.val==val){
-                if(p.val==-1){
-                    head = c.next;
-                    c = head;
-                }
-                else{
-                    p.next = c.next;
-                    c = p;
-                }
-            }
-            else{
+            if(c.val==val)
+                p.next = c.next;
+            else
                 p = c;
-                c = c.next;
-            }
+            c = c.next;
         }
-        return head;
+        return dummy.next;
     }
 }

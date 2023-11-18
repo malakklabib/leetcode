@@ -1,12 +1,12 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        change = ['*'] * (amount + 1)
+        change = [-2] * (amount + 1)
         
         def dp(amount):
             if amount == 0:
                 return 0
             
-            if change[amount] != '*':
+            if change[amount] != -2:
                 return change[amount];
             
             imin = float('inf')

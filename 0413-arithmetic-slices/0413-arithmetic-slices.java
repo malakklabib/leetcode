@@ -16,9 +16,6 @@ class Solution {
                 sliceLength = 0;
             dp[i] = slices;
         }
-        for(int i:dp)
-            System.out.print(i + " ");
-        
         return dp[nums.length-1];
     }
 }

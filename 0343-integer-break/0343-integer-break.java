@@ -7,10 +7,6 @@ class Solution {
         
         for(int i = n-1; i > 0; i--)
             memo[n] = Math.max(memo[n], i * dp(n-i));
-        
-        for(int i:memo)
-            System.out.print(i + " ");
-
         return memo[n];
     }
     public int dp(int i) {

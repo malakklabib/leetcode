@@ -10,7 +10,6 @@ class Solution {
                 r = m - 1;
             else
                 l = m + 1;
-            System.out.println(l+" "+r+" "+m);
         }
         return l;
     }

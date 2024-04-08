@@ -19,8 +19,8 @@ class Node {
 */
 
 class Solution {
-    Set<Integer> seen = new HashSet<>();
     Map<Node, Node> clone = new HashMap<>();
+    
     public Node cloneGraph(Node node) {
         if(node==null)
             return null;

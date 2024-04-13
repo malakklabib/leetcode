@@ -29,28 +29,9 @@ class Solution {
     }
     
     public ListNode merge(ListNode a, ListNode b){
-        ListNode c = new ListNode();
+        ListNode c = new ListNode(-1);
         ListNode head = c;
         ListNode currA = a, currB = b;
-        
-        if(currA!=null && currB!=null){
-            if(currA.val>currB.val){
-                c.val = currB.val;
-                currB = currB.next;
-            }
-            else{
-                c.val = currA.val;
-                currA = currA.next;
-            }
-        }
-        else if(currA!=null){
-            c.val = currA.val;
-            currA = currA.next;
-        }
-        else{
-            c.val = currB.val;
-            currB = currB.next;
-        }
         
         while(currA!=null && currB!=null){
             if(currA.val>currB.val){
@@ -64,19 +45,9 @@ class Solution {
             c = c.next;
         }
         
-        while(currA!=null){
-            c.next = new ListNode(currA.val);
-            c = c.next;
-            currA = currA.next;
-        }
+        c.next = currA==null? currB : currA;
         
-        while(currB!=null){
-            c.next = new ListNode(currB.val);
-            currB = currB.next;
-            c = c.next;
-        }
-        
-        return head;
+        return head.next;
     }
 }
 

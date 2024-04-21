@@ -7,11 +7,14 @@ class Solution {
         n = grid[0].length;
         this.grid = grid;
         
+        int fresh = 0;
         Queue<String> q = new LinkedList();
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                 if(grid[i][j]==2)
                     q.add(encode(i,j));
+                if(grid[i][j]==1)
+                    fresh++;
             }
         }
         
@@ -27,6 +30,7 @@ class Solution {
                     int newRow = direction[0] + row;
                     int newCol = direction[1] + col;
                     if(valid(newRow, newCol)){
+                        fresh--;
                         grid[newRow][newCol] = 2;
                         q.add(encode(newRow,newCol));
                     }
@@ -35,13 +39,8 @@ class Solution {
             if(!q.isEmpty())
                 mins++;
         }
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(grid[i][j] == 1)
-                    return -1;
-            }
-        }
-        return mins;
+        
+        return fresh==0? mins : -1;
     }
     
     public String encode(int i, int j){

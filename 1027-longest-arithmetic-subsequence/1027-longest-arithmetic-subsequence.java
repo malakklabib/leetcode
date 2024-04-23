@@ -1,17 +1,24 @@
-class Solution {
-    public int longestArithSeqLength(int[] nums) {        
-        int maxLength = 2;
-        Map<Integer, Integer>[] dp = new HashMap[nums.length];
-        
-        for (int i = 0; i < nums.length; i++) {
-            dp[i] = new HashMap<>();
-            for (int j = i-1; j >= 0; j--) {
-                int d = nums[i] - nums[j];
-                dp[i].put(d, Math.max(dp[i].getOrDefault(d, -1) ,dp[j].getOrDefault(d, 1) + 1));
-                maxLength = Math.max(maxLength, dp[i].get(d));
+public class Solution {
+    public int longestArithSeqLength(int[] nums) {
+        int n = nums.length;
+        Map<Integer, Map<Integer, Integer>> dp = new HashMap<>();  // Key is the difference, value is a map (key is the index, value is length of sequence ending at that index)
+        int ans = 2;  // The minimum length of any arithmetic sequence is 2
+
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < j; i++) {
+                int diff = nums[j] - nums[i];
+                if (!dp.containsKey(diff)) {
+                    dp.put(diff, new HashMap<>());
+                }
+                Map<Integer, Integer> map = dp.get(diff);
+                int len1 = map.getOrDefault(i, 1);  // Get the length ending at i, default is 1 if not present
+                int len2 = map.getOrDefault(j, 1);  // Get the length ending at j, default is 1 if not present
+                int currentLength = Math.max(len1 + 1, len2);  // Length of sequence ending at j is either extended from i or as it was
+                map.put(j, currentLength);
+                ans = Math.max(ans, currentLength);  // Update the answer
             }
         }
         
-        return maxLength;
+        return ans;
     }
 }

@@ -6,8 +6,6 @@ class Solution {
         
         for(int i = 1; i < temperatures.length; i++){
             int t = temperatures[i];
-            if(!s.isEmpty() && temperatures[s.peek()] >= t)
-                s.push(i);
             
             while(!s.isEmpty() && temperatures[s.peek()] < t){
                 res[s.peek()] = i-s.pop();

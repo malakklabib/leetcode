@@ -12,7 +12,6 @@ class Solution {
         
         int ans = 1;
         double slowest = (double)(target-position[n-1])/map.get(position[n-1]);
-        System.out.print(slowest+" ");
         
         for(int i = n-2; i >= 0; i--){
             double currTime = (double)(target-position[i])/map.get(position[i]);

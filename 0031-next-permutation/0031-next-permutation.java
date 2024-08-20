@@ -14,22 +14,22 @@ class Solution {
             while (nums[minInd] <= nums[pivot]) {
                 minInd--;
             }
-            int tmp = nums[pivot];
-            nums[pivot] = nums[minInd];
-            nums[minInd] = tmp;
+            swap(nums, pivot, minInd);
         }
-        nums = reverse(nums, pivot+1, n-1);
+        reverse(nums, pivot+1, n-1);
     }
     
-    public int[] reverse(int[] nums, int s, int e){
+    public void swap(int[] nums, int a, int b){
+        int tmp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tmp;
+    }
+    
+    public void reverse(int[] nums, int s, int e){
         while(s <= e){
-            System.out.println(s + " " + e);
-            int tmp = nums[s];
-            nums[s] = nums[e];
-            nums[e] = tmp;
+            swap(nums, s, e);
             s++;
             e--;
         }
-        return nums;
     }
 }

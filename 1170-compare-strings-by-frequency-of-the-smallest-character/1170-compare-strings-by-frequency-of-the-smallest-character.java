@@ -4,27 +4,8 @@ class Solution {
         int[] queryFn = new int[queries.length];
         int[] wordsFn = new int[words.length];
 
-        for(int i = 0; i < queries.length; i++){
-            String query = queries[i];
-            char smallestChar = 'z';
-            for(char c: query.toCharArray()){
-                freq[c-'a']++;
-                smallestChar = (char) Math.min((int) smallestChar, (int) c);
-            }
-            queryFn[i] = freq[smallestChar-'a'];
-            Arrays.fill(freq, 0);
-        }
-        
-        for(int i = 0; i < words.length; i++){
-            String word = words[i];
-            char smallestChar = 'z';
-            for(char c: word.toCharArray()){
-                freq[c-'a']++;
-                smallestChar = (char) Math.min((int) smallestChar, (int) c);
-            }
-            wordsFn[i] = freq[smallestChar-'a'];
-            Arrays.fill(freq, 0);
-        }
+        getFrequencies(queries, freq, queryFn);
+        getFrequencies(words, freq, wordsFn);
         
         Arrays.sort(wordsFn);
         for(int i = 0; i < queryFn.length; i++){
@@ -35,5 +16,17 @@ class Solution {
         }
         
         return queryFn;
+    }
+    public void getFrequencies(String[] strs, int[] freq, int[] fn){
+        for(int i = 0; i < strs.length; i++){
+            String str = strs[i];
+            char smallestChar = 'z';
+            for(char c: str.toCharArray()){
+                freq[c-'a']++;
+                smallestChar = (char) Math.min((int) smallestChar, (int) c);
+            }
+            fn[i] = freq[smallestChar-'a'];
+            Arrays.fill(freq, 0);
+        }
     }
 }

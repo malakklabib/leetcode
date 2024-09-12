@@ -6,9 +6,17 @@ class Solution {
         Arrays.sort(wordsFn);
         for(int i = 0; i < queryFn.length; i++){
             int fq = queryFn[i];
-            queryFn[i] = 0;
-            for(int j =  wordsFn.length-1; j >= 0 && fq < wordsFn[j]; j--)
-                queryFn[i]++;
+            // queryFn[i] = 0;
+            int l = 0, r = wordsFn.length-1;
+            
+            while(l <= r){
+                int m = (r-l)/2 + l;
+                if(fq >= wordsFn[m])
+                    l = m + 1;
+                else
+                    r = m - 1;
+            }
+            queryFn[i] = wordsFn.length-l;
         }
         
         return queryFn;

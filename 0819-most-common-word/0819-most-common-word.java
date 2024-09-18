@@ -12,7 +12,6 @@ class Solution {
                 continue;
             counts.put(lowercaseWord, counts.getOrDefault(lowercaseWord, 0) + 1);
             maxCount = Math.max(maxCount, counts.get(lowercaseWord));
-            System.out.println(lowercaseWord+" "+ maxCount);
         }
         
         for(Map.Entry<String, Integer> entry: counts.entrySet()){
